@@ -1266,7 +1266,7 @@
 
       <!-- Video 1 -->
       <div class="gallery-item reveal" style="transition-delay:.2s" data-src="edit4.mp4" data-type="video">
-        <video src="edit4.mp4" muted playsinline preload="metadata"></video>
+        <video src="edit4.mp4" muted playsinline autoplay loop></video>
         <div class="video-badge">▶ Video</div>
         <div class="item-overlay"><span class="item-label">Un recuerdo de ti</span></div>
       </div>
@@ -1285,7 +1285,7 @@
 
       <!-- Video 2 -->
       <div class="gallery-item reveal" style="transition-delay:.5s" data-src="edit.mp4" data-type="video">
-        <video src="edit.mp4" muted playsinline preload="metadata"></video>
+        <video src="edit.mp4" muted playsinline autoplay loop></video>
         <div class="video-badge">▶ Video</div>
         <div class="item-overlay"><span class="item-label">Así éramos</span></div>
       </div>
@@ -1307,7 +1307,7 @@
       <!-- Recuerdo 1 -->
       <div class="recuerdo-item reveal-left">
         <div class="recuerdo-img-slot rec-video-item" data-src="primeravez.mp4" data-type="video">
-          <video src="primeravez.mp4" muted playsinline preload="metadata"></video>
+          <video src="primeravez.mp4" muted playsinline autoplay loop></video>
           <div class="rec-video-badge">▶ Toca para ver</div>
         </div>
         <div class="recuerdo-text">
@@ -1623,6 +1623,7 @@
           content.innerHTML = '';
 
           if (type === 'video') {
+            if (window._bgMusic) window._bgMusic.pause();
             const vid = document.createElement('video');
             vid.src = src;
             vid.controls = true;
@@ -1647,6 +1648,7 @@
         content.innerHTML = '';
         lb.classList.remove('open');
         document.body.style.overflow = '';
+        if (window._bgMusic) window._bgMusic.resume();
       }
 
       close.addEventListener('click', closeLB);
@@ -1720,6 +1722,13 @@
           play();
         }
       });
+
+      /* expone control global para que el lightbox pueda pausar/reanudar */
+      window._bgMusic = {
+        pause: () => { audio.pause(); },
+        resume: () => { if (playing) play(); },
+        isPlaying: () => playing
+      };
 
       /* botón flotante de play/pause */
       btn.addEventListener('click', e => {
