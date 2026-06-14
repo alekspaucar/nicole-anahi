@@ -708,6 +708,65 @@
       .farewell-grid .fg-item:nth-child(5) { grid-column: span 1; }
     }
 
+    /* ─── MUSIC BUTTON ─────────────────────────────────────── */
+    #music-btn {
+      position: fixed;
+      bottom: 1.8rem;
+      right: 1.8rem;
+      z-index: 500;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      background: var(--wine);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(107,51,71,.35);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      color: #fff;
+      font-size: 1.1rem;
+    }
+    #music-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 28px rgba(107,51,71,.45);
+    }
+    #music-btn.playing { background: var(--deep-rose); }
+
+    /* ring pulse when playing */
+    #music-btn.playing::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid var(--rose);
+      animation: musicRing 1.8s ease-out infinite;
+    }
+    @keyframes musicRing {
+      0%   { opacity: .8; transform: scale(1); }
+      100% { opacity: 0;  transform: scale(1.55); }
+    }
+
+    #music-hint {
+      position: fixed;
+      bottom: 5rem;
+      right: 1.8rem;
+      z-index: 500;
+      background: var(--wine);
+      color: #fff;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      padding: 0.45rem 0.9rem;
+      border-radius: 20px;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    #music-hint.show { opacity: 1; transform: translateY(0); }
+
     /* ─── FOOTER ────────────────────────────────────────────── */
     footer {
       padding: 2rem;
@@ -1200,6 +1259,18 @@
   <div id="lightbox-content"></div>
 </div>
 
+<!-- Music -->
+<!--
+  PON TU CANCIÓN en la misma carpeta que index.html
+  y renómbrala a:  musica.mp3
+-->
+<audio id="bg-music" loop>
+  <source src="musica.mp3" type="audio/mpeg" />
+</audio>
+
+<div id="music-hint">♫ Toca para escuchar</div>
+<button id="music-btn" aria-label="Música">♫</button>
+
 <script>
 /* ─── Floating hearts ─────────────────────────────────────── */
 (function () {
@@ -1315,6 +1386,74 @@
   close.addEventListener('click', closeLB);
   lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); });
+})();
+
+/* ─── Background music ───────────────────────────────────── */
+(function () {
+  const audio   = document.getElementById('bg-music');
+  const btn     = document.getElementById('music-btn');
+  const hint    = document.getElementById('music-hint');
+  let   playing = false;
+
+  function setPlaying(state) {
+    playing = state;
+    btn.textContent = playing ? '❚❚' : '♫';
+    btn.classList.toggle('playing', playing);
+  }
+
+  function play() {
+    audio.volume = 0;
+    audio.play().then(() => {
+      setPlaying(true);
+      fadeVolume(0, 0.5, 2000);
+    }).catch(() => {});
+  }
+
+  function fadeVolume(from, to, ms) {
+    const steps = 40;
+    const delta = (to - from) / steps;
+    const interval = ms / steps;
+    let current = from;
+    const timer = setInterval(() => {
+      current += delta;
+      audio.volume = Math.min(Math.max(current, 0), 1);
+      if ((delta > 0 && current >= to) || (delta < 0 && current <= to)) {
+        clearInterval(timer);
+        if (to === 0) { audio.pause(); setPlaying(false); }
+      }
+    }, interval);
+  }
+
+  /* intenta autoplay al cargar */
+  window.addEventListener('load', () => {
+    audio.volume = 0;
+    audio.play().then(() => {
+      setPlaying(true);
+      fadeVolume(0, 0.5, 3000);
+    }).catch(() => {
+      /* bloqueado por el navegador: muestra hint y espera interacción */
+      hint.classList.add('show');
+      setTimeout(() => hint.classList.remove('show'), 4000);
+
+      const startOnInteraction = () => {
+        play();
+        document.removeEventListener('click', startOnInteraction);
+        document.removeEventListener('touchstart', startOnInteraction);
+      };
+      document.addEventListener('click', startOnInteraction);
+      document.addEventListener('touchstart', startOnInteraction);
+    });
+  });
+
+  /* botón manual de play/pause */
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    if (playing) {
+      fadeVolume(audio.volume, 0, 1200);
+    } else {
+      play();
+    }
+  });
 })();
 </script>
 </body>
