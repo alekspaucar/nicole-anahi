@@ -748,24 +748,93 @@
       100% { opacity: 0;  transform: scale(1.55); }
     }
 
-    #music-hint {
+    /* ─── MUSIC MODAL ───────────────────────────────────────── */
+    #music-modal {
       position: fixed;
-      bottom: 5rem;
-      right: 1.8rem;
-      z-index: 500;
-      background: var(--wine);
-      color: #fff;
-      font-size: 0.72rem;
-      letter-spacing: 0.06em;
-      padding: 0.45rem 0.9rem;
-      border-radius: 20px;
+      inset: 0;
+      z-index: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(20, 6, 10, 0.55);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
       opacity: 0;
-      transform: translateY(6px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
       pointer-events: none;
-      white-space: nowrap;
+      transition: opacity 0.5s ease;
     }
-    #music-hint.show { opacity: 1; transform: translateY(0); }
+    #music-modal.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .music-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 2.8rem 2.4rem 2.4rem;
+      max-width: 340px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 30px 80px rgba(0,0,0,.3);
+      transform: translateY(20px) scale(0.97);
+      transition: transform 0.5s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    #music-modal.show .music-card {
+      transform: translateY(0) scale(1);
+    }
+    .music-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--rose), var(--wine), var(--rose));
+    }
+
+    .music-card-icon {
+      font-size: 3rem;
+      display: block;
+      margin-bottom: 0.6rem;
+      animation: iconPulse 2s ease-in-out infinite;
+    }
+    @keyframes iconPulse {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.15); }
+    }
+
+    .music-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: var(--wine);
+      margin-bottom: 0.7rem;
+    }
+    .music-card p {
+      font-size: 0.88rem;
+      color: var(--warm-gray);
+      font-weight: 300;
+      line-height: 1.7;
+      margin-bottom: 1.8rem;
+    }
+
+    #music-modal-btn {
+      background: linear-gradient(135deg, var(--rose), var(--wine));
+      color: #fff;
+      border: none;
+      padding: 0.75rem 2.2rem;
+      border-radius: 30px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 6px 20px rgba(107,51,71,.35);
+    }
+    #music-modal-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(107,51,71,.45);
+    }
 
     /* ─── FOOTER ────────────────────────────────────────────── */
     footer {
@@ -1268,7 +1337,16 @@
   <source src="musica.mp3" type="audio/mpeg" />
 </audio>
 
-<div id="music-hint">♫ Toca para escuchar</div>
+<!-- Music modal -->
+<div id="music-modal">
+  <div class="music-card">
+    <span class="music-card-icon">🎵</span>
+    <h3>Una experiencia con música</h3>
+    <p>Esta página tiene una canción especial.<br/>Presiona para comenzar y déjate llevar.</p>
+    <button id="music-modal-btn">♫ &nbsp;Presióname aquí</button>
+  </div>
+</div>
+
 <button id="music-btn" aria-label="Música">♫</button>
 
 <script>
@@ -1390,23 +1468,16 @@
 
 /* ─── Background music ───────────────────────────────────── */
 (function () {
-  const audio   = document.getElementById('bg-music');
-  const btn     = document.getElementById('music-btn');
-  const hint    = document.getElementById('music-hint');
-  let   playing = false;
+  const audio    = document.getElementById('bg-music');
+  const btn      = document.getElementById('music-btn');
+  const modal    = document.getElementById('music-modal');
+  const modalBtn = document.getElementById('music-modal-btn');
+  let   playing  = false;
 
   function setPlaying(state) {
     playing = state;
     btn.textContent = playing ? '❚❚' : '♫';
     btn.classList.toggle('playing', playing);
-  }
-
-  function play() {
-    audio.volume = 0;
-    audio.play().then(() => {
-      setPlaying(true);
-      fadeVolume(0, 0.5, 2000);
-    }).catch(() => {});
   }
 
   function fadeVolume(from, to, ms) {
@@ -1424,6 +1495,18 @@
     }, interval);
   }
 
+  function play() {
+    audio.volume = 0;
+    audio.play().then(() => {
+      setPlaying(true);
+      fadeVolume(0, 0.5, 2500);
+    }).catch(() => {});
+  }
+
+  function hideModal() {
+    modal.classList.remove('show');
+  }
+
   /* intenta autoplay al cargar */
   window.addEventListener('load', () => {
     audio.volume = 0;
@@ -1431,21 +1514,26 @@
       setPlaying(true);
       fadeVolume(0, 0.5, 3000);
     }).catch(() => {
-      /* bloqueado por el navegador: muestra hint y espera interacción */
-      hint.classList.add('show');
-      setTimeout(() => hint.classList.remove('show'), 4000);
-
-      const startOnInteraction = () => {
-        play();
-        document.removeEventListener('click', startOnInteraction);
-        document.removeEventListener('touchstart', startOnInteraction);
-      };
-      document.addEventListener('click', startOnInteraction);
-      document.addEventListener('touchstart', startOnInteraction);
+      /* bloqueado: muestra el modal elegante */
+      setTimeout(() => modal.classList.add('show'), 800);
     });
   });
 
-  /* botón manual de play/pause */
+  /* botón dentro del modal */
+  modalBtn.addEventListener('click', () => {
+    hideModal();
+    play();
+  });
+
+  /* también cierra el modal si hacen clic en el fondo */
+  modal.addEventListener('click', e => {
+    if (e.target === modal) {
+      hideModal();
+      play();
+    }
+  });
+
+  /* botón flotante de play/pause */
   btn.addEventListener('click', e => {
     e.stopPropagation();
     if (playing) {
