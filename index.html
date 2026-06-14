@@ -541,6 +541,25 @@
       background: #000;
     }
 
+    .rec-video-item {
+      cursor: pointer;
+      position: relative;
+    }
+    .rec-video-badge {
+      position: absolute;
+      bottom: 0.8rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(107,51,71,.82);
+      color: #fff;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      padding: 0.35rem 1rem;
+      border-radius: 20px;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
     .recuerdo-img-slot .rec-placeholder {
       width: 100%;
       height: 100%;
@@ -1287,8 +1306,9 @@
 
       <!-- Recuerdo 1 -->
       <div class="recuerdo-item reveal-left">
-        <div class="recuerdo-img-slot">
+        <div class="recuerdo-img-slot rec-video-item" data-src="primeravez.mp4" data-type="video">
           <video src="primeravez.mp4" muted playsinline preload="metadata"></video>
+          <div class="rec-video-badge">▶ Toca para ver</div>
         </div>
         <div class="recuerdo-text">
           <div class="recuerdo-number">01</div>
@@ -1598,7 +1618,7 @@
       const content = document.getElementById('lightbox-content');
       const close = document.getElementById('lightbox-close');
 
-      document.querySelectorAll('.gallery-item, .fg-item').forEach(item => {
+      document.querySelectorAll('.gallery-item, .fg-item, .rec-video-item').forEach(item => {
         item.addEventListener('click', () => {
           const src = item.dataset.src;
           const type = item.dataset.type;
