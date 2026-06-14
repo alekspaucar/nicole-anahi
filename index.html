@@ -398,8 +398,8 @@
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 0.7rem;
       max-width: 1000px;
       margin: 3rem auto 0;
     }
@@ -408,8 +408,7 @@
       position: relative;
       border-radius: 3px;
       overflow: hidden;
-      background: #e8d5da;
-      aspect-ratio: 1;
+      background: #1c0c11;
       cursor: pointer;
       transition: transform 0.35s ease;
     }
@@ -418,12 +417,20 @@
       transform: scale(1.03);
     }
 
-    .gallery-item img,
-    .gallery-item video {
+    .gallery-item img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      max-height: 340px;
+      object-fit: contain;
       display: block;
+    }
+
+    .gallery-item video {
+      width: 100%;
+      display: block;
+      max-height: 340px;
+      object-fit: contain;
+      background: #000;
     }
 
     .gallery-item .item-overlay {
@@ -514,19 +521,24 @@
     }
 
     .recuerdo-img-slot {
-      aspect-ratio: 4/3;
       border-radius: 3px;
       overflow: hidden;
-      background: #e8d5da;
+      background: #1c0c11;
       position: relative;
       box-shadow: 0 8px 30px rgba(107, 51, 71, .12);
     }
 
     .recuerdo-img-slot img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
       display: block;
+      object-fit: contain;
+    }
+
+    .recuerdo-img-slot video {
+      width: 100%;
+      display: block;
+      object-fit: contain;
+      background: #000;
     }
 
     .recuerdo-img-slot .rec-placeholder {
@@ -800,8 +812,7 @@
       position: relative;
       border-radius: 4px;
       overflow: hidden;
-      background: #e8d5da;
-      aspect-ratio: 1 / 1;
+      background: #1c0c11;
       cursor: pointer;
       transition: transform 0.35s ease, box-shadow 0.35s ease;
     }
@@ -811,12 +822,19 @@
       box-shadow: 0 12px 40px rgba(107, 51, 71, .18);
     }
 
-    .fg-item img,
+    .fg-item img {
+      width: 100%;
+      display: block;
+      max-height: 320px;
+      object-fit: contain;
+    }
+
     .fg-item video {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
       display: block;
+      max-height: 320px;
+      object-fit: contain;
+      background: #000;
     }
 
     .fg-item .fg-overlay {
@@ -1146,7 +1164,7 @@
   <section id="main-photo">
     <div class="photo-frame reveal">
       <div class="main-img-slot">
-        <img src="/primerbeso.jpg" alt="Nosotros" />
+        <img src="primerbeso.jpg" alt="Nosotros" />
       </div>
     </div>
     <div class="photo-caption reveal">
@@ -1216,57 +1234,39 @@
     <div class="gallery-grid">
 
       <!-- Foto 1 -->
-      <div class="gallery-item reveal" data-src="" data-type="image">
-        <div class="main-img-slot">
-          <img src="fotosudados.png" alt="Nosotros" />
-        </div>
+      <div class="gallery-item reveal" data-src="fotosudados.png" data-type="image">
+        <img src="fotosudados.png" alt="Nosotros" />
         <div class="item-overlay"><span class="item-label">Un momento especial</span></div>
       </div>
 
       <!-- Foto 2 -->
-      <div class="gallery-item reveal" style="transition-delay:.1s" data-src="" data-type="image">
-        <div class="main-img-slot">
-          <img src="comidaconella.jpg" alt="Nosotros" />
-        </div>
+      <div class="gallery-item reveal" style="transition-delay:.1s" data-src="comidaconella.jpg" data-type="image">
+        <img src="comidaconella.jpg" alt="Nosotros" />
         <div class="item-overlay"><span class="item-label">Risas que no se olvidan</span></div>
       </div>
 
       <!-- Video 1 -->
-      <div class="gallery-item reveal" style="transition-delay:.2s" data-src="" data-type="video">
-        <div class="gallery-video">
-          <video controls>
-            <source src="edit4.mp4" type="video/mp4">
-            Tu navegador no soporta videos.
-          </video>
-        </div>
+      <div class="gallery-item reveal" style="transition-delay:.2s" data-src="edit4.mp4" data-type="video">
+        <video src="edit4.mp4" muted playsinline preload="metadata"></video>
         <div class="video-badge">▶ Video</div>
-        <div class="item-overlay"><span class="item-label">Un recuerdo de ti </span></div>
+        <div class="item-overlay"><span class="item-label">Un recuerdo de ti</span></div>
       </div>
 
       <!-- Foto 3 -->
-      <div class="gallery-item reveal" style="transition-delay:.3s" data-src="" data-type="image">
-        <div class="main-img-slot">
-          <img src="protector.jpg" alt="Nosotros" />
-        </div>
+      <div class="gallery-item reveal" style="transition-delay:.3s" data-src="protector.jpg" data-type="image">
+        <img src="protector.jpg" alt="Nosotros" />
         <div class="item-overlay"><span class="item-label">Momentos de felicidad</span></div>
       </div>
 
       <!-- Foto 4 -->
-      <div class="gallery-item reveal" style="transition-delay:.4s" data-src="" data-type="image">
-        <div class="main-img-slot">
-          <img src="mirandoyacusi.jpg" alt="Nosotros" />
-        </div>
+      <div class="gallery-item reveal" style="transition-delay:.4s" data-src="mirandoyacusi.jpg" data-type="image">
+        <img src="mirandoyacusi.jpg" alt="Nosotros" />
         <div class="item-overlay"><span class="item-label">Donde el tiempo se detuvo</span></div>
       </div>
 
       <!-- Video 2 -->
-      <div class="gallery-item reveal" style="transition-delay:.5s" data-src="" data-type="video">
-        <div class="gallery-video">
-          <video controls>
-            <source src="edit.mp4" type="video/mp4">
-            Tu navegador no soporta videos.
-          </video>
-        </div>
+      <div class="gallery-item reveal" style="transition-delay:.5s" data-src="edit.mp4" data-type="video">
+        <video src="edit.mp4" muted playsinline preload="metadata"></video>
         <div class="video-badge">▶ Video</div>
         <div class="item-overlay"><span class="item-label">Así éramos</span></div>
       </div>
@@ -1288,20 +1288,11 @@
       <!-- Recuerdo 1 -->
       <div class="recuerdo-item reveal-left">
         <div class="recuerdo-img-slot">
-          <!--
-          REEMPLAZA con:
-          <img src="recuerdo1.jpg" alt="Recuerdo 1" />
-        -->
-          <div class="gallery-video">
-            <video controls>
-              <source src="primeravez.mp4" type="video/mp4">
-              Tu navegador no soporta videos.
-            </video>
-          </div>
+          <video src="primeravez.mp4" muted playsinline preload="metadata"></video>
         </div>
         <div class="recuerdo-text">
           <div class="recuerdo-number">01</div>
-          <h3>Cuando me volvi a enamorar de ti</h3>
+          <h3>Cuando me volví a enamorar de ti</h3>
           <p>
             Hay un momento exacto en el que sabes que esta persona
             es diferente. No lo puedes explicar, simplemente lo sientes.
@@ -1313,13 +1304,7 @@
       <!-- Recuerdo 2 -->
       <div class="recuerdo-item reverse reveal-right">
         <div class="recuerdo-img-slot">
-          <!--
-          REEMPLAZA con:
-          <img src="recuerdo2.jpg" alt="Recuerdo 2" />
-        -->
-          <div class="main-img-slot">
-            <img src="pensando.jpg" alt="Nosotros" />
-          </div>
+          <img src="pensando.jpg" alt="Recuerdo 2" />
         </div>
         <div class="recuerdo-text">
           <div class="recuerdo-number">02</div>
@@ -1335,49 +1320,36 @@
       <!-- Recuerdo 3 -->
       <div class="recuerdo-item reveal-left">
         <div class="recuerdo-img-slot">
-          <!--
-          REEMPLAZA con:
-          <img src="recuerdo3.jpg" alt="Recuerdo 3" />
-        -->
-          <div class="rec-placeholder">
-            <div class="main-img-slot">
-              <img src="fetichesella.jpg" alt="Nosotros" />
-            </div>
-          </div>
-          <div class="recuerdo-text">
-            <div class="recuerdo-number">03</div>
-            <h3>Los momentos sencillos que lo fueron todo</h3>
-            <p>
-              No hacía falta que fuera extraordinario para ser perfecto.
-              A veces solo era estar juntos, sin más. Y eso,
-              en silencio, valía más que mil palabras.
-            </p>
-          </div>
+          <img src="fetichesella.jpg" alt="Recuerdo 3" />
         </div>
-
-        <!-- Recuerdo 4 -->
-        <div class="recuerdo-item reverse reveal-right">
-          <div class="recuerdo-img-slot">
-            <!--
-          REEMPLAZA con:
-          <img src="recuerdo4.jpg" alt="Recuerdo 4" />
-        -->
-            <div class="main-img-slot">
-              <img src="risa.jpg" alt="Nosotros" />
-            </div>
-          </div>
-          <div class="recuerdo-text">
-            <div class="recuerdo-number">04</div>
-            <h3>Las risas que se quedaron grabadas</h3>
-            <p>
-              Hay ciertas risas que no se olvidan. Las que te doblan,
-              las que duelen de tanto reír, las que solo existen
-              con esa persona y con nadie más.
-            </p>
-          </div>
+        <div class="recuerdo-text">
+          <div class="recuerdo-number">03</div>
+          <h3>Los momentos sencillos que lo fueron todo</h3>
+          <p>
+            No hacía falta que fuera extraordinario para ser perfecto.
+            A veces solo era estar juntos, sin más. Y eso,
+            en silencio, valía más que mil palabras.
+          </p>
         </div>
-
       </div>
+
+      <!-- Recuerdo 4 -->
+      <div class="recuerdo-item reverse reveal-right">
+        <div class="recuerdo-img-slot">
+          <img src="risa.jpg" alt="Recuerdo 4" />
+        </div>
+        <div class="recuerdo-text">
+          <div class="recuerdo-number">04</div>
+          <h3>Las risas que se quedaron grabadas</h3>
+          <p>
+            Hay ciertas risas que no se olvidan. Las que te doblan,
+            las que duelen de tanto reír, las que solo existen
+            con esa persona y con nadie más.
+          </p>
+        </div>
+      </div>
+
+    </div>
   </section>
 
 
@@ -1401,36 +1373,31 @@
     <div class="farewell-grid">
 
       <!-- Foto final 1 -->
-      <div class="fg-item reveal" data-src="" data-type="image">
-        <!--
-        REEMPLAZA con:
-        <img src="final1.jpg" alt="..." />
-        y pon data-src="final1.jpg" en el div.fg-item
-      -->
+      <div class="fg-item reveal" data-src="tamo.jpg" data-type="image">
         <img src="tamo.jpg" alt="Foto final 1">
         <div class="fg-overlay"><span>Un último recuerdo</span></div>
       </div>
 
       <!-- Foto final 2 -->
-      <div class="fg-item reveal" style="transition-delay:.1s" data-src="" data-type="image">
+      <div class="fg-item reveal" style="transition-delay:.1s" data-src="ella.jpeg" data-type="image">
         <img src="ella.jpeg" alt="Foto final 2">
         <div class="fg-overlay"><span>Para siempre en mi corazón</span></div>
       </div>
 
       <!-- Foto final 3 -->
-      <div class="fg-item reveal" style="transition-delay:.2s" data-src="" data-type="image">
+      <div class="fg-item reveal" style="transition-delay:.2s" data-src="besoyacusi.jpg" data-type="image">
         <img src="besoyacusi.jpg" alt="Foto final 3">
         <div class="fg-overlay"><span>Lo más bonito que viví</span></div>
       </div>
 
       <!-- Foto final 4 -->
-      <div class="fg-item reveal" style="transition-delay:.3s" data-src="" data-type="image">
+      <div class="fg-item reveal" style="transition-delay:.3s" data-src="espejo.jpg" data-type="image">
         <img src="espejo.jpg" alt="Foto final 4">
         <div class="fg-overlay"><span>Momentos que no se olvidan</span></div>
       </div>
 
       <!-- Foto final 5 -->
-      <div class="fg-item reveal" style="transition-delay:.4s" data-src="" data-type="image">
+      <div class="fg-item reveal" style="transition-delay:.4s" data-src="yoabrazandola.jpg" data-type="image">
         <img src="yoabrazandola.jpg" alt="Foto final 5">
         <div class="fg-overlay"><span>Gracias por todo</span></div>
       </div>
