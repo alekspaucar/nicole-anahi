@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Para Anahi, con todo mi corazón</title>
+  <title>Una historia que todavía no termina</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap"
     rel="stylesheet" />
@@ -221,64 +221,6 @@
       background: var(--cream);
     }
 
-    .photo-frame {
-      position: relative;
-      display: inline-block;
-    }
-
-    .photo-frame::before {
-      content: '';
-      position: absolute;
-      inset: -10px;
-      border: 1.5px solid var(--rose);
-      border-radius: 4px;
-      opacity: 0.45;
-      pointer-events: none;
-    }
-
-    .photo-frame::after {
-      content: '';
-      position: absolute;
-      inset: -20px;
-      border: 1px solid var(--rose);
-      border-radius: 4px;
-      opacity: 0.2;
-      pointer-events: none;
-    }
-
-    .main-img-slot {
-      width: min(420px, 88vw);
-      aspect-ratio: 3/4;
-      border-radius: 4px;
-      overflow: hidden;
-      background: #e8d5da;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-    }
-
-    .main-img-slot img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .placeholder-label {
-      color: var(--rose);
-      font-size: 0.8rem;
-      letter-spacing: 0.08em;
-      text-align: center;
-      padding: 0 1rem;
-    }
-
-    .placeholder-icon {
-      font-size: 2.4rem;
-      opacity: 0.5;
-    }
-
     .photo-caption {
       text-align: center;
       max-width: 520px;
@@ -390,10 +332,20 @@
       font-style: normal;
     }
 
-    /* ─── GALLERY ───────────────────────────────────────────── */
-    #gallery {
-      padding: 5rem 1.5rem;
-      background: var(--cream);
+    /* ─── ALBUM ─────────────────────────────────────────────── */
+    #album {
+      padding: 5rem 1.5rem 6rem;
+      background: linear-gradient(180deg, var(--cream) 0%, #fff5f7 100%);
+    }
+
+    .album-intro {
+      max-width: 560px;
+      margin: 0 auto;
+      text-align: center;
+      color: var(--warm-gray);
+      font-weight: 300;
+      line-height: 1.8;
+      font-size: 1rem;
     }
 
     .gallery-grid {
@@ -498,123 +450,38 @@
     }
 
     .recuerdos-list {
-      max-width: 820px;
+      max-width: 640px;
       margin: 3rem auto 0;
       display: flex;
       flex-direction: column;
-      gap: 3.5rem;
+      gap: 3rem;
     }
 
     .recuerdo-item {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
-      align-items: center;
+      padding-left: 1.8rem;
+      border-left: 2px solid var(--blush);
     }
-
-    .recuerdo-item.reverse {
-      direction: rtl;
-    }
-
-    .recuerdo-item.reverse>* {
-      direction: ltr;
-    }
-
-    .recuerdo-img-slot {
-      border-radius: 3px;
-      overflow: hidden;
-      background: #1c0c11;
-      position: relative;
-      box-shadow: 0 8px 30px rgba(107, 51, 71, .12);
-    }
-
-    .recuerdo-img-slot img {
-      width: 100%;
-      display: block;
-      object-fit: contain;
-    }
-
-    .recuerdo-img-slot video {
-      width: 100%;
-      display: block;
-      object-fit: contain;
-      background: #000;
-    }
-
-    .rec-video-item {
-      cursor: pointer;
-      position: relative;
-    }
-
-    .rec-video-badge {
-      position: absolute;
-      bottom: 0.8rem;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(107, 51, 71, .82);
-      color: #fff;
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
-      padding: 0.35rem 1rem;
-      border-radius: 20px;
-      white-space: nowrap;
-      pointer-events: none;
-    }
-
-    .recuerdo-img-slot .rec-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
-      color: var(--rose);
-    }
-
-    .recuerdo-img-slot .rec-placeholder .ph-icon {
-      font-size: 2rem;
-      opacity: .5;
-    }
-
-    .recuerdo-img-slot .rec-placeholder .ph-text {
-      font-size: .7rem;
-      letter-spacing: .05em;
-      text-align: center;
-      padding: 0 .8rem;
-    }
-
-    .recuerdo-text {}
 
     .recuerdo-number {
-      font-size: 3rem;
+      font-size: 2.4rem;
       font-family: 'Playfair Display', serif;
       color: var(--blush);
       line-height: 1;
       margin-bottom: 0.5rem;
     }
 
-    .recuerdo-text h3 {
-      font-size: 1.4rem;
+    .recuerdo-item h3 {
+      font-size: 1.3rem;
       font-style: italic;
       color: var(--wine);
       margin-bottom: 0.75rem;
     }
 
-    .recuerdo-text p {
+    .recuerdo-item p {
       font-size: 0.95rem;
       color: var(--warm-gray);
       font-weight: 300;
       line-height: 1.85;
-    }
-
-    @media (max-width: 620px) {
-
-      .recuerdo-item,
-      .recuerdo-item.reverse {
-        grid-template-columns: 1fr;
-        direction: ltr;
-      }
     }
 
     /* ─── LETTER ────────────────────────────────────────────── */
@@ -797,123 +664,6 @@
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--rose), transparent);
       margin: 1.5rem auto;
-    }
-
-    .farewell-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 0.85rem;
-      max-width: 960px;
-      margin: 0 auto;
-      align-items: start;
-    }
-
-    .farewell-grid .fg-item:nth-child(1) {
-      grid-column: span 2;
-    }
-
-    .farewell-grid .fg-item:nth-child(2) {
-      grid-column: span 2;
-    }
-
-    .farewell-grid .fg-item:nth-child(3) {
-      grid-column: span 2;
-    }
-
-    .farewell-grid .fg-item:nth-child(4) {
-      grid-column: span 3;
-    }
-
-    .farewell-grid .fg-item:nth-child(5) {
-      grid-column: span 3;
-    }
-
-    .fg-item {
-      position: relative;
-      border-radius: 4px;
-      overflow: hidden;
-      background: var(--blush);
-      cursor: pointer;
-      transition: transform 0.35s ease, box-shadow 0.35s ease;
-    }
-
-    .fg-item:hover {
-      transform: scale(1.025);
-      box-shadow: 0 12px 40px rgba(107, 51, 71, .18);
-    }
-
-    .fg-item img {
-      width: 100%;
-      display: block;
-      object-fit: cover;
-      aspect-ratio: 3/4;
-    }
-
-    .fg-item video {
-      width: 100%;
-      display: block;
-      max-height: 320px;
-      object-fit: contain;
-      background: #000;
-    }
-
-    .fg-item .fg-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(107, 51, 71, .7) 0%, transparent 50%);
-      opacity: 0;
-      transition: opacity 0.35s ease;
-      display: flex;
-      align-items: flex-end;
-      padding: 1rem;
-    }
-
-    .fg-item:hover .fg-overlay {
-      opacity: 1;
-    }
-
-    .fg-item .fg-overlay span {
-      color: #fff;
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 0.85rem;
-    }
-
-    .fg-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      color: var(--rose);
-    }
-
-    .fg-placeholder .ph-icon {
-      font-size: 1.8rem;
-      opacity: .5;
-    }
-
-    .fg-placeholder .ph-text {
-      font-size: .7rem;
-      letter-spacing: .05em;
-      text-align: center;
-      padding: 0 .6rem;
-    }
-
-    @media (max-width: 560px) {
-      .farewell-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .farewell-grid .fg-item:nth-child(1),
-      .farewell-grid .fg-item:nth-child(2),
-      .farewell-grid .fg-item:nth-child(3),
-      .farewell-grid .fg-item:nth-child(4),
-      .farewell-grid .fg-item:nth-child(5) {
-        grid-column: span 1;
-      }
     }
 
     /* ─── MUSIC BUTTON ─────────────────────────────────────── */
@@ -1174,12 +924,12 @@
 
   <!-- ─── HERO ──────────────────────────────────────────────── -->
   <section id="hero">
-    <p class="hero-ornament">Con todo el amor que siento y sentire por el resto de mi vida</p>
-    <h1>Esto no es un adiós,<br />❤️</h1>
+    <p class="hero-ornament">Esta historia es sobre ti</p>
+    <h1>Todo lo bueno en lo que he mejorado,<br />tiene tu nombre ❤️</h1>
     <div class="hero-divider"></div>
     <p class="hero-subtitle">
-      Nunca dejé de elegirte, ni un solo día.<br />
-      hay una nueva carta al final 🫶.
+      No hay una sola parte de mí que no haya cambiado<br />
+      pensando en ser mejor para ti. Sigo aquí, sin orgullo, esperando.
     </p>
     <div class="scroll-hint">
       <span>Desliza</span>
@@ -1187,13 +937,8 @@
     </div>
   </section>
 
-  <!-- ─── MAIN PHOTO ────────────────────────────────────────── -->
+  <!-- ─── INTRO ─────────────────────────────────────────────── -->
   <section id="main-photo">
-    <div class="photo-frame reveal">
-      <div class="main-img-slot">
-        <img src="primerbeso.jpg" alt="Nosotros" />
-      </div>
-    </div>
     <div class="photo-caption reveal">
       <h2>Tú y yo</h2>
       <p>
@@ -1261,78 +1006,6 @@
     </div>
   </section>
 
-  <!-- ─── GALLERY ───────────────────────────────────────────── -->
-  <section id="gallery">
-    <div class="section-title reveal">
-      <h2>Momentos que fueron reales</h2>
-      <div class="ornament">
-        <span></span><em>✦</em><span></span>
-      </div>
-    </div>
-
-    <div class="gallery-grid">
-
-      <!-- Foto 1 -->
-      <div class="gallery-item reveal" data-src="fotosudados.png" data-type="image">
-        <img src="fotosudados.png" alt="Nosotros" />
-        <div class="item-overlay"><span class="item-label">Un momento especial</span></div>
-      </div>
-
-      <!-- Foto 2 -->
-      <div class="gallery-item reveal" style="transition-delay:.1s" data-src="comidaconella.jpg" data-type="image">
-        <img src="comidaconella.jpg" alt="Nosotros" />
-        <div class="item-overlay"><span class="item-label">Risas que no se olvidan</span></div>
-      </div>
-
-      <!-- Video 1 -->
-      <div class="gallery-item reveal" style="transition-delay:.2s" data-src="edit4.mp4" data-type="video">
-        <video src="edit4.mp4" muted playsinline autoplay loop></video>
-        <div class="video-badge">▶ Video</div>
-        <div class="item-overlay"><span class="item-label">Un recuerdo de ti</span></div>
-      </div>
-
-      <!-- Foto 3 -->
-      <div class="gallery-item reveal" style="transition-delay:.3s" data-src="protector.jpg" data-type="image">
-        <img src="protector.jpg" alt="Nosotros" />
-        <div class="item-overlay"><span class="item-label">Momentos de felicidad</span></div>
-      </div>
-
-      <!-- Foto 4 -->
-      <div class="gallery-item reveal" style="transition-delay:.4s" data-src="mirandoyacusi.jpg" data-type="image">
-        <img src="mirandoyacusi.jpg" alt="Nosotros" />
-        <div class="item-overlay"><span class="item-label">Donde el tiempo se detuvo</span></div>
-      </div>
-
-      <!-- Video 2 -->
-      <div class="gallery-item reveal" style="transition-delay:.5s" data-src="edit.mp4" data-type="video">
-        <video src="edit.mp4" muted playsinline autoplay loop></video>
-        <div class="video-badge">▶ Video</div>
-        <div class="item-overlay"><span class="item-label">Así éramos</span></div>
-      </div>
-
-      <!-- Video 3 -->
-      <div class="gallery-item reveal" style="transition-delay:.6s" data-src="edit2.mp4" data-type="video">
-        <video src="edit2.mp4" muted playsinline autoplay loop></video>
-        <div class="video-badge">▶ Video</div>
-        <div class="item-overlay"><span class="item-label">Otro momento nuestro</span></div>
-      </div>
-
-      <!-- Video 4 -->
-      <div class="gallery-item reveal" style="transition-delay:.7s" data-src="sineditar.mp4" data-type="video">
-        <video src="sineditar.mp4" muted playsinline autoplay loop></video>
-        <div class="video-badge">▶ Video</div>
-        <div class="item-overlay"><span class="item-label">Tal cual, sin filtros</span></div>
-      </div>
-      <!-- Video 5-->
-      <div class="gallery-item reveal" style="transition-delay:.7s" data-src="inicio.mp4" data-type="video">
-        <video src="inicio.mp4" muted playsinline autoplay loop></video>
-        <div class="video-badge">▶ Video</div>
-        <div class="item-overlay"><span class="item-label">puedo ser tu novio</span></div>
-      </div>
-
-    </div>
-  </section>
-
   <!-- ─── RECUERDOS ─────────────────────────────────────────── -->
   <section id="recuerdos">
     <div class="section-title reveal">
@@ -1345,109 +1018,75 @@
     <div class="recuerdos-list">
 
       <!-- Recuerdo 1 -->
-      <div class="recuerdo-item reveal-left">
-        <div class="recuerdo-img-slot rec-video-item" data-src="primeravez.mp4" data-type="video">
-          <video src="primeravez.mp4" muted playsinline autoplay loop></video>
-          <div class="rec-video-badge">▶ Toca para ver</div>
-        </div>
-        <div class="recuerdo-text">
-          <div class="recuerdo-number">01</div>
-          <h3>Cuando me volví a enamorar de ti</h3>
-          <p>
-            Hay un momento exacto en el que sabes que esta persona
-            es diferente y te juro que te encontre a ti.
-            No lo puedo explicar, simplemente lo sinti.
-            cuando te volvi a ver cruzando la calle y yo tenia una flores para ti
-            nunca me olvidare.
-          </p>
-        </div>
+      <div class="recuerdo-item reveal">
+        <div class="recuerdo-number">01</div>
+        <h3>Cuando me volví a enamorar de ti</h3>
+        <p>
+          Hay un momento exacto en el que sabes que esta persona
+          es diferente y te juro que te encontre a ti.
+          No lo puedo explicar, simplemente lo sinti.
+          cuando te volvi a ver cruzando la calle y yo tenia una flores para ti
+          nunca me olvidare.
+        </p>
       </div>
 
       <!-- Recuerdo 2 -->
-      <div class="recuerdo-item reverse reveal-right">
-        <div class="recuerdo-img-slot">
-          <img src="pensando.jpg" alt="Recuerdo 2" />
-        </div>
-        <div class="recuerdo-text">
-          <div class="recuerdo-number">02</div>
-          <h3>Las aventuras que compartimos</h3>
-          <p>
-            Cada lugar que visitamos juntos tiene algo de los dos.
-            y siempre recordare el como me sentia cuando pasaba por ahi,
-            sonreiré sin poder evitarlo, extrañandote y recordando lo que vivimos juntos
-            porque ahí quedará siempre una parte de nuestra historia.
-          </p>
-        </div>
+      <div class="recuerdo-item reveal">
+        <div class="recuerdo-number">02</div>
+        <h3>Las aventuras que compartimos</h3>
+        <p>
+          Cada lugar que visitamos juntos tiene algo de los dos.
+          y siempre recordare el como me sentia cuando pasaba por ahi,
+          sonreiré sin poder evitarlo, extrañandote y recordando lo que vivimos juntos
+          porque ahí quedará siempre una parte de nuestra historia.
+        </p>
       </div>
 
       <!-- Recuerdo 3 -->
-      <div class="recuerdo-item reveal-left">
-        <div class="recuerdo-img-slot">
-          <img src="fetichesella.jpg" alt="Recuerdo 3" />
-        </div>
-        <div class="recuerdo-text">
-          <div class="recuerdo-number">03</div>
-          <h3>Los momentos sencillos que lo fueron todo</h3>
-          <p>
-            No hacía falta que fuera perfecto.
-            A veces solo era estar juntos, sin más. Y eso,
-            en silencio o haciendo burlas o tus fetiches jaja,
-            valía más que mil palabras.
-          </p>
-        </div>
+      <div class="recuerdo-item reveal">
+        <div class="recuerdo-number">03</div>
+        <h3>Los momentos sencillos que lo fueron todo</h3>
+        <p>
+          No hacía falta que fuera perfecto.
+          A veces solo era estar juntos, sin más. Y eso,
+          en silencio o haciendo burlas o tus fetiches jaja,
+          valía más que mil palabras.
+        </p>
       </div>
 
       <!-- Recuerdo 4 -->
-      <div class="recuerdo-item reverse reveal-right">
-        <div class="recuerdo-img-slot">
-          <img src="risa.jpg" alt="Recuerdo 4" />
-        </div>
-        <div class="recuerdo-text">
-          <div class="recuerdo-number">04</div>
-          <h3>Las risas que se quedaron grabadas</h3>
-          <p>
-            Hay ciertas risas que no se olvidan. y siempre me gusto
-            como te reias y te lo he dicho, y sinceramente
-            eso extraño demasiado de ti, la verdad no hay dia que no te piense.
-          </p>
-        </div>
+      <div class="recuerdo-item reveal">
+        <div class="recuerdo-number">04</div>
+        <h3>Las risas que se quedaron grabadas</h3>
+        <p>
+          Hay ciertas risas que no se olvidan. y siempre me gusto
+          como te reias y te lo he dicho, y sinceramente
+          eso extraño demasiado de ti, la verdad no hay dia que no te piense.
+        </p>
       </div>
 
       <!-- Recuerdo 5 -->
-      <div class="recuerdo-item reveal-left">
-        <div class="recuerdo-img-slot">
-          <img src="besoespejo.jpg" alt="Recuerdo 5" />
-        </div>
-        <div class="recuerdo-text">
-          <div class="recuerdo-number">05</div>
-          <h3>Los reflejos que también nos vieron enamorados</h3>
-          <p>
-            Hasta el espejo fue testigo de lo que sentíamos pa q veas.
-            No hacía falta que nadie más lo viera,
-            con que lo supiéramos nosotros dos, bastaba.
-          </p>
-        </div>
+      <div class="recuerdo-item reveal">
+        <div class="recuerdo-number">05</div>
+        <h3>Los reflejos que también nos vieron enamorados</h3>
+        <p>
+          Hasta el espejo fue testigo de lo que sentíamos pa q veas.
+          No hacía falta que nadie más lo viera,
+          con que lo supiéramos nosotros dos, bastaba.
+        </p>
       </div>
 
       <!-- Recuerdo 6 -->
-      <div class="recuerdo-item reverse reveal-right">
-        <div class="recuerdo-img-slot rec-video-item" data-src="fin.mp4" data-type="video">
-          <video src="fin.mp4" muted playsinline autoplay loop></video>
-          <div class="rec-video-badge">▶ Toca para ver</div>
-        </div>
-        <div class="recuerdo-text">
-          <div class="recuerdo-number">06</div>
-          <h3>cuando te pedi que seas mi novia</h3>
-          <p>
-            siempre adore el echo de que eres una buena mujer
-            de que tu vales completamente la pena por como eres
-            y sinceramente serias una buena madre, y por muchas cosas mas
-            el pedirte que seas mi novia fue un momento que nunca olvidare
-            y que siempre recordare con mucho amor y cariño.
-
-
-          </p>
-        </div>
+      <div class="recuerdo-item reveal">
+        <div class="recuerdo-number">06</div>
+        <h3>cuando te pedi que seas mi novia</h3>
+        <p>
+          siempre adore el echo de que eres una buena mujer
+          de que tu vales completamente la pena por como eres
+          y sinceramente serias una buena madre, y por muchas cosas mas
+          el pedirte que seas mi novia fue un momento que nunca olvidare
+          y que siempre recordare con mucho amor y cariño.
+        </p>
       </div>
 
     </div>
@@ -1490,6 +1129,14 @@
     Con todo el amor que te tengo, decidí no buscarte. Entendí que,
     aunque el amor nunca faltó, lo que nos hacía falta era paz,
     y siento que ambos la perdimos en algún momento.
+  </p>
+
+  <p>
+    Hoy hablé con alguien que me dijo algo que se me quedó grabado:
+    que para construir algo bueno, primero hay que dejar el orgullo.
+    Yo dejé el mío hace tiempo, cada vez que te busqué, cada vez que insistí
+    sin que me importara verme vulnerable. Ojalá que, aunque sea esta vez,
+    tú también puedas dejar el tuyo, no por mí, sino por los dos.
   </p>
 
   <p>
@@ -1545,40 +1192,6 @@
       </p>
     </div>
 
-    <div class="farewell-grid">
-
-      <!-- Foto final 1 -->
-      <div class="fg-item reveal" data-src="tamo.jpg" data-type="image">
-        <img src="tamo.jpg" alt="Foto final 1">
-        <div class="fg-overlay"><span>Un recuerdo que guardo con amor</span></div>
-      </div>
-
-      <!-- Foto final 2 -->
-      <div class="fg-item reveal" style="transition-delay:.1s" data-src="ella.jpeg" data-type="image">
-        <img src="ella.jpeg" alt="Foto final 2">
-        <div class="fg-overlay"><span>Para siempre en mi corazón</span></div>
-      </div>
-
-      <!-- Foto final 3 -->
-      <div class="fg-item reveal" style="transition-delay:.2s" data-src="besoyacusi.jpg" data-type="image">
-        <img src="besoyacusi.jpg" alt="Foto final 3">
-        <div class="fg-overlay"><span>Lo más bonito que vivimos</span></div>
-      </div>
-
-      <!-- Foto final 4 -->
-      <div class="fg-item reveal" style="transition-delay:.3s" data-src="espejo.jpg" data-type="image">
-        <img src="espejo.jpg" alt="Foto final 4">
-        <div class="fg-overlay"><span>Momentos que no se olvidan</span></div>
-      </div>
-
-      <!-- Foto final 5 -->
-      <div class="fg-item reveal" style="transition-delay:.4s" data-src="abrazo.jpg" data-type="image">
-        <img src="abrazo.jpg" alt="Foto final 5">
-        <div class="fg-overlay"><span>Gracias por tanto</span></div>
-      </div>
-
-    </div>
-
   </section>
 
 
@@ -1586,16 +1199,152 @@
   <section id="final">
     <div class="final-icon reveal">❤️</div>
     <p class="final-message reveal">
-      "Quien de verdad te quiere,mejorara y sera paciente buscara la manera de arreglar las cosas.
+      "Quien de verdad te quiere, mejora y es paciente, busca la manera de arreglar las cosas.
       No busco a la persona perfecta, busco crecer junto a la persona correcta."<br>
-      Elijo seguir aquí, mejorando, esperando el momento en que los dos estemos mejor.<br>
+      Yo ya dejé mi orgullo cada vez que te busqué. No te pido que corras,
+      solo que camines: si alguna vez sientes ganas de escribirme,
+      no dejes que el orgullo te lo impida, como yo no dejé que me detuviera a mí.<br>
+      Sigo aquí, con las puertas abiertas y sin nada que demostrar.<br>
       Te amo con toda mi alma, Anahi ❤️.
-
     </p>
 
-
     <div class="final-divider reveal"></div>
-    <p class="final-closing reveal">Con amor · Con paciencia · Con fe en los dos</p>
+    <p class="final-closing reveal">Con amor · Sin orgullo · Con fe en los dos</p>
+  </section>
+
+  <!-- ─── ALBUM ─────────────────────────────────────────────── -->
+  <section id="album">
+    <div class="section-title reveal">
+      <h2>Álbum</h2>
+      <div class="ornament">
+        <span></span><em>✦</em><span></span>
+      </div>
+    </div>
+    <p class="album-intro reveal">
+      Cada foto, cada video, un pedazo de lo que vivimos.
+      Todo lo que fue real, guardado en un solo lugar.
+    </p>
+
+    <div class="gallery-grid">
+
+      <div class="gallery-item reveal" data-src="primerbeso.jpg" data-type="image">
+        <img src="primerbeso.jpg" alt="Nosotros" />
+        <div class="item-overlay"><span class="item-label">Nuestro primer beso</span></div>
+      </div>
+
+      <div class="gallery-item reveal" style="transition-delay:.05s" data-src="fotosudados.png" data-type="image">
+        <img src="fotosudados.png" alt="Nosotros" />
+        <div class="item-overlay"><span class="item-label">Un momento especial</span></div>
+      </div>
+
+      <div class="gallery-item reveal" style="transition-delay:.1s" data-src="comidaconella.jpg" data-type="image">
+        <img src="comidaconella.jpg" alt="Nosotros" />
+        <div class="item-overlay"><span class="item-label">Risas que no se olvidan</span></div>
+      </div>
+
+      <div class="gallery-item reveal" style="transition-delay:.15s" data-src="protector.jpg" data-type="image">
+        <img src="protector.jpg" alt="Nosotros" />
+        <div class="item-overlay"><span class="item-label">Momentos de felicidad</span></div>
+      </div>
+
+      <div class="gallery-item reveal" style="transition-delay:.2s" data-src="mirandoyacusi.jpg" data-type="image">
+        <img src="mirandoyacusi.jpg" alt="Nosotros" />
+        <div class="item-overlay"><span class="item-label">Donde el tiempo se detuvo</span></div>
+      </div>
+
+      <div class="gallery-item reveal" style="transition-delay:.25s" data-src="pensando.jpg" data-type="image">
+        <img src="pensando.jpg" alt="Nosotros" />
+        <div class="item-overlay"><span class="item-label">Las aventuras que compartimos</span></div>
+      </div>
+
+      <div class="gallery-item reveal" style="transition-delay:.3s" data-src="fetichesella.jpg" data-type="image">
+        <img src="fetichesella.jpg" alt="Nosotros" />
+        <div class="item-overlay"><span class="item-label">Los momentos sencillos que lo fueron todo</span></div>
+      </div>
+
+      <div class="gallery-item reveal" style="transition-delay:.35s" data-src="risa.jpg" data-type="image">
+        <img src="risa.jpg" alt="Nosotros" />
+        <div class="item-overlay"><span class="item-label">Las risas que se quedaron grabadas</span></div>
+      </div>
+
+      <div class="gallery-item reveal" style="transition-delay:.4s" data-src="besoespejo.jpg" data-type="image">
+        <img src="besoespejo.jpg" alt="Nosotros" />
+        <div class="item-overlay"><span class="item-label">Los reflejos que también nos vieron enamorados</span></div>
+      </div>
+
+      <div class="gallery-item reveal" style="transition-delay:.45s" data-src="tocador.jpg" data-type="image">
+        <img src="tocador.jpg" alt="Nosotros" />
+        <div class="item-overlay"><span class="item-label">Los pequeños rituales de estar cerca</span></div>
+      </div>
+
+      <div class="gallery-item reveal" style="transition-delay:.5s" data-src="tamo.jpg" data-type="image">
+        <img src="tamo.jpg" alt="Nosotros" />
+        <div class="item-overlay"><span class="item-label">Un recuerdo que guardo con amor</span></div>
+      </div>
+
+      <div class="gallery-item reveal" style="transition-delay:.55s" data-src="ella.jpeg" data-type="image">
+        <img src="ella.jpeg" alt="Nosotros" />
+        <div class="item-overlay"><span class="item-label">Para siempre en mi corazón</span></div>
+      </div>
+
+      <div class="gallery-item reveal" style="transition-delay:.6s" data-src="besoyacusi.jpg" data-type="image">
+        <img src="besoyacusi.jpg" alt="Nosotros" />
+        <div class="item-overlay"><span class="item-label">Lo más bonito que vivimos</span></div>
+      </div>
+
+      <div class="gallery-item reveal" style="transition-delay:.65s" data-src="espejo.jpg" data-type="image">
+        <img src="espejo.jpg" alt="Nosotros" />
+        <div class="item-overlay"><span class="item-label">Momentos que no se olvidan</span></div>
+      </div>
+
+      <div class="gallery-item reveal" style="transition-delay:.7s" data-src="abrazo.jpg" data-type="image">
+        <img src="abrazo.jpg" alt="Nosotros" />
+        <div class="item-overlay"><span class="item-label">Gracias por tanto</span></div>
+      </div>
+
+      <div class="gallery-item reveal" data-src="edit4.mp4" data-type="video">
+        <video src="edit4.mp4" muted playsinline autoplay loop></video>
+        <div class="video-badge">▶ Video</div>
+        <div class="item-overlay"><span class="item-label">Un recuerdo de ti</span></div>
+      </div>
+
+      <div class="gallery-item reveal" style="transition-delay:.05s" data-src="edit.mp4" data-type="video">
+        <video src="edit.mp4" muted playsinline autoplay loop></video>
+        <div class="video-badge">▶ Video</div>
+        <div class="item-overlay"><span class="item-label">Así éramos</span></div>
+      </div>
+
+      <div class="gallery-item reveal" style="transition-delay:.1s" data-src="edit2.mp4" data-type="video">
+        <video src="edit2.mp4" muted playsinline autoplay loop></video>
+        <div class="video-badge">▶ Video</div>
+        <div class="item-overlay"><span class="item-label">Otro momento nuestro</span></div>
+      </div>
+
+      <div class="gallery-item reveal" style="transition-delay:.15s" data-src="sineditar.mp4" data-type="video">
+        <video src="sineditar.mp4" muted playsinline autoplay loop></video>
+        <div class="video-badge">▶ Video</div>
+        <div class="item-overlay"><span class="item-label">Tal cual, sin filtros</span></div>
+      </div>
+
+      <div class="gallery-item reveal" style="transition-delay:.2s" data-src="inicio.mp4" data-type="video">
+        <video src="inicio.mp4" muted playsinline autoplay loop></video>
+        <div class="video-badge">▶ Video</div>
+        <div class="item-overlay"><span class="item-label">Puedo ser tu novio</span></div>
+      </div>
+
+      <div class="gallery-item reveal" style="transition-delay:.25s" data-src="primeravez.mp4" data-type="video">
+        <video src="primeravez.mp4" muted playsinline autoplay loop></video>
+        <div class="video-badge">▶ Video</div>
+        <div class="item-overlay"><span class="item-label">Cuando me volví a enamorar de ti</span></div>
+      </div>
+
+      <div class="gallery-item reveal" style="transition-delay:.3s" data-src="fin.mp4" data-type="video">
+        <video src="fin.mp4" muted playsinline autoplay loop></video>
+        <div class="video-badge">▶ Video</div>
+        <div class="item-overlay"><span class="item-label">Cuando te pedí que seas mi novia</span></div>
+      </div>
+
+    </div>
   </section>
 
   <!-- ─── FOOTER ────────────────────────────────────────────── -->
@@ -1707,7 +1456,7 @@
       const content = document.getElementById('lightbox-content');
       const close = document.getElementById('lightbox-close');
 
-      document.querySelectorAll('.gallery-item, .fg-item, .rec-video-item').forEach(item => {
+      document.querySelectorAll('.gallery-item').forEach(item => {
         item.addEventListener('click', () => {
           const src = item.dataset.src;
           const type = item.dataset.type;
